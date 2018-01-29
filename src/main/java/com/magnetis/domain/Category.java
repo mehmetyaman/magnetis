@@ -18,8 +18,13 @@ public class Category {
     private Long id;
     @Getter
     @Setter
+    @Column(unique = true)
     private String name;
     @OneToMany
-    @Getter @Setter private List<Product> products;
-    @Getter @Setter private Boolean visible;
+    @Getter
+    @Setter
+    private List<Product> products;
+    @Getter
+    @Setter
+    private Boolean visible;
 }

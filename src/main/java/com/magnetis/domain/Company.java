@@ -20,13 +20,20 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Getter @Setter private String name;
+    @Column(unique = true)
+    @Getter
+    @Setter
+    private String name;
 
     @ManyToMany
-    @Getter @Setter private List<Category> categories;
+    @Getter
+    @Setter
+    private List<Category> categories;
 
     @ManyToMany
-    @Getter @Setter private List<Campaign> compaigns;
+    @Getter
+    @Setter
+    private List<Campaign> compaigns;
 
     public Company(String name) {
         this.name = name;

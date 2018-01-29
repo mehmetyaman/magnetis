@@ -18,15 +18,34 @@ public class Product {
     public Product() {
     }
 
-    @Getter @Setter private String name;
-    @Getter @Setter private Date publishDate;
-    @Getter @Setter private Boolean visible;
-    @Getter @Setter private String imageUrl;
-    @Getter @Setter private String imageThumbnailUrl;
-    @Getter @Setter private Double cost;
-    @Getter @Setter private String longDesc;
-    @Getter @Setter private String shortDesc;
+    @Column(unique = true)
+    @Getter
+    @Setter
+    private String name;
+    @Getter
+    @Setter
+    private Date publishDate;
+    @Getter
+    @Setter
+    private Boolean visible;
+    @Getter
+    @Setter
+    private String imageUrl;
+    @Getter
+    @Setter
+    private String imageThumbnailUrl;
+    @Getter
+    @Setter
+    private Double cost;
+    @Getter
+    @Setter
+    private String longDesc;
+    @Getter
+    @Setter
+    private String shortDesc;
     @ManyToOne
-    @Getter @Setter private Category category;
+    @Getter
+    @Setter
+    private Category category;
 
 }

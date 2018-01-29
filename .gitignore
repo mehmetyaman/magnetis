@@ -4,7 +4,10 @@
 *.iws
 *.ipr
 .idea/
+.gradle/
+
 
 
 # Maven
 build/
+out/

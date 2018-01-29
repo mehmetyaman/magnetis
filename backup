@@ -1,0 +1,28 @@
+   repository.save(new Musteri("Jack", "Bauer"));
+            repository.save(new Musteri("Chloe", "O'Brian"));
+            repository.save(new Musteri("Kim", "Bauer"));
+            repository.save(new Musteri("David", "Palmer"));
+            repository.save(new Musteri("Michelle", "Dessler"));
+            // fetch all Musteris
+            log.info("Musteris found with findAll():");
+            log.info("-------------------------------");
+            for (Musteri Musteri : repository.findAll()) {
+                log.info(Musteri.toString());
+            }
+            log.info("");
+            // fetch an individual Musteri by ID
+            Musteri Musteri = repository.findOne(1L);
+            log.info("Musteri found with findOne(1L):");
+            log.info("--------------------------------");
+            log.info(Musteri.toString());
+            log.info("");
+            // fetch Musteris by last name
+            log.info("Musteri found with findByLastName('Bauer'):");
+            log.info("--------------------------------------------");
+            for (Musteri bauer : repository.findByAdi("Bauer")) {
+                log.info(bauer.toString());
+            }
+            log.info("");
+
+
+    02 KM         HARUN Gï¿½Zï¿½M      Kesim Erkek                   1        60,00

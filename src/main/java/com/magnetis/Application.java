@@ -84,6 +84,8 @@ public class Application {
         c1.setLastName(array[ran.nextInt(array.length)]);
         c1.setPhoneNumber("53032873827");
         c1.setPoints(new Double(i));
+        c1.setEMail(ran.nextLong() + c1.getFirstName() + "@" + c1.getLastName()+".com");
+        c1.setPassword(c1.getPhoneNumber() + "X");
 
         return c1;
     }

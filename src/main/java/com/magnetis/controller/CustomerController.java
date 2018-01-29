@@ -15,7 +15,7 @@ public class CustomerController {
         return customerService.findAll();
     }
 
-    @RequestMapping(value = "/customer")
+    @RequestMapping(value = "/customer/login", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public Customer getCustomer(@RequestParam("email") String email, @RequestParam("pass") String pass) {
         return customerService.getCustomerByEmailAndPassword(email, pass);

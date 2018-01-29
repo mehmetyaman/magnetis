@@ -27,6 +27,7 @@ public class Customer {
     @Getter @Setter private Date birth;
     @Getter @Setter private String phoneNumber;
     @Column(unique=true) @Getter @Setter private String eMail;
+    @Getter @Setter private String password;
 
     @OneToMany
     @Getter @Setter private List<CustomerOrder> orders;

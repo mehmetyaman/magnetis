@@ -15,6 +15,12 @@ public class CustomerController {
         return customerService.findAll();
     }
 
+    @RequestMapping(value = "/customer")
+    @ResponseBody
+    public Customer getCustomer(@RequestParam("email") String email, @RequestParam("pass") String pass) {
+        return customerService.getCustomerByEmailAndPassword(email, pass);
+    }
+
     @RequestMapping(value = "/customer", method = RequestMethod.POST)
     public Customer create(@RequestBody Customer customer) {
         return customerService.save(customer);

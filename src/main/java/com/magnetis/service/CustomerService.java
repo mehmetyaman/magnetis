@@ -5,6 +5,8 @@ import com.magnetis.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("customerService")
 public class CustomerService {
 
@@ -17,6 +19,11 @@ public class CustomerService {
 
     public Customer getCustomer(Long id) {
         return repository.findOne(id);
+    }
+
+    public Customer getCustomerByEmailAndPassword(String email, String password) {
+        List<Customer> customers = repository.findByEMailAndPassword(email, password);
+        return customers != null && customers.size() > 0 ? customers.get(0) : null;
     }
 
     public Iterable<Customer> findAll() {

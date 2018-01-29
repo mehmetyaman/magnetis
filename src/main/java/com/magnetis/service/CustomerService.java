@@ -11,15 +11,15 @@ public class CustomerService {
     @Autowired
     CustomerRepository repository;
 
-    public Customer save(Customer customer){
+    public Customer save(Customer customer) {
         return repository.save(customer);
     }
 
-    public Customer getCustomer(Long id){
+    public Customer getCustomer(Long id) {
         return repository.findOne(id);
     }
 
-    public Iterable<Customer> findAll(){
+    public Iterable<Customer> findAll() {
         return repository.findAll();
     }
 

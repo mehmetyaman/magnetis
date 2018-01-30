@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.util.Objects;
 
 @Entity
 @Transactional
@@ -23,4 +24,19 @@ public class Campaign {
     @Getter
     @Setter
     private Double discountRatio;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Campaign campaign = (Campaign) o;
+        return Objects.equals(id, campaign.id) &&
+                Objects.equals(name, campaign.name) &&
+                Objects.equals(discountRatio, campaign.discountRatio);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, discountRatio);
+    }
 }

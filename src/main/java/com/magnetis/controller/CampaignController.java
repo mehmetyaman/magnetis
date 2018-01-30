@@ -2,11 +2,15 @@ package com.magnetis.controller;
 
 import com.magnetis.domain.Campaign;
 import com.magnetis.service.CampaignService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CampaignController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CampaignController.class);
 
     @Autowired
     CampaignService campaignService;

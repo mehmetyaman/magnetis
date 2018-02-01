@@ -50,7 +50,7 @@ public class Application {
                 c.getCategories().add(cat);
                 companyRepository.save(c);
             }
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 20; i++) {
                 Customer c = getDummyCustomer(i);
                 ArrayList<CustomerOrder> orders = new ArrayList<CustomerOrder>();
                 orders.add(getDummyOrder());
@@ -77,13 +77,15 @@ public class Application {
 
     private Customer getDummyCustomer(int i) {
         Customer c1 = new Customer();
-        String[] array = {"Hello", "world", "DIC", "dream", "ali", "veli", "harun", "mahir", "eren", "ahmet"};
+        String[] array = {"ali", "veli", "ahmet", "ayşe", "nefise", "murat", "semih", "sezin", "selma", "nadide", "yasemin", "haluk", "duru"};
         Random ran = new Random();
         c1.setBirth(new Date());
         c1.setFirstName(array[ran.nextInt(array.length)]);
         c1.setLastName(array[ran.nextInt(array.length)]);
         c1.setPhoneNumber("53032873827");
         c1.setPoints(new Double(i));
+        c1.setEMail(ran.nextInt() + c1.getFirstName() + "@" + c1.getLastName() + ".com");
+        c1.setPassword(c1.getPhoneNumber() + "X");
 
         return c1;
     }

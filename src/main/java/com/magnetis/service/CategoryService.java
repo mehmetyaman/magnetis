@@ -12,7 +12,23 @@ public class CategoryService {
     @Autowired
     CategoryRepository repository;
 
-    public Iterable<Category> findAll(){
+    public Category save(Category category){
+        return repository.save(category);
+    }
+
+    public Iterable<Category> findAll() {
         return repository.findAll();
+    }
+
+    public Category getCategory(Long id) {
+        return repository.findOne(id);
+    }
+
+    public Category update(Category category) {
+        return repository.save(category);
+    }
+
+    public void delete(Long id) {
+        repository.delete(id);
     }
 }

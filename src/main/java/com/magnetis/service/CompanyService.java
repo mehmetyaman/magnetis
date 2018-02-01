@@ -1,8 +1,6 @@
 package com.magnetis.service;
 
-import com.magnetis.domain.Campaign;
 import com.magnetis.domain.Company;
-import com.magnetis.domain.Customer;
 import com.magnetis.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

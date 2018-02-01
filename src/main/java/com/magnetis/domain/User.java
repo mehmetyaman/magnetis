@@ -14,8 +14,8 @@ import java.util.Objects;
  */
 @Entity
 @Transactional
-public class Customer {
-    public Customer() {
+public class User {
+    public User() {
     }
 
     @Id
@@ -31,23 +31,23 @@ public class Customer {
     @Getter @Setter private String password;
 
     @OneToMany
-    @Getter @Setter private List<CustomerOrder> orders;
+    @Getter @Setter private List<UserOrder> orders;
     @Getter @Setter private Double points;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(id, customer.id) &&
-                Objects.equals(firstName, customer.firstName) &&
-                Objects.equals(lastName, customer.lastName) &&
-                Objects.equals(birth, customer.birth) &&
-                Objects.equals(phoneNumber, customer.phoneNumber) &&
-                Objects.equals(eMail, customer.eMail) &&
-                Objects.equals(password, customer.password) &&
-                Objects.equals(orders, customer.orders) &&
-                Objects.equals(points, customer.points);
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(birth, user.birth) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(eMail, user.eMail) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(orders, user.orders) &&
+                Objects.equals(points, user.points);
     }
 
     @Override

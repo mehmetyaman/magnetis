@@ -1,13 +1,12 @@
 package com.magnetis.repository;
 
-import com.magnetis.domain.Customer;
-import com.magnetis.domain.CustomerOrder;
-import com.magnetis.domain.Product;
+import com.magnetis.domain.User;
+import com.magnetis.domain.UserOrder;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface OrderRepository extends CrudRepository<CustomerOrder, Long> {
+public interface OrderRepository extends CrudRepository<UserOrder, Long> {
 
-    List<CustomerOrder> findByCustomer(Customer customer);
+    List<UserOrder> findByCustomer(User user);
 }

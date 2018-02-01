@@ -4,7 +4,7 @@ package com.magnetis;
 import com.magnetis.domain.*;
 import com.magnetis.repository.CategoryRepository;
 import com.magnetis.repository.CompanyRepository;
-import com.magnetis.repository.CustomerRepository;
+import com.magnetis.repository.UserRepository;
 import com.magnetis.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +34,7 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner demo(ProductRepository productRepository, CustomerRepository customerRepository,
+    public CommandLineRunner demo(ProductRepository productRepository, UserRepository userRepository,
                                   CompanyRepository companyRepository, CategoryRepository categoryRepository) {
         return (args) -> {
             Product fon = getProductAsFon();
@@ -51,10 +51,10 @@ public class Application {
                 companyRepository.save(c);
             }
             for (int i = 0; i < 20; i++) {
-                Customer c = getDummyCustomer(i);
-                ArrayList<CustomerOrder> orders = new ArrayList<CustomerOrder>();
+                User c = getDummyCustomer(i);
+                ArrayList<UserOrder> orders = new ArrayList<UserOrder>();
                 orders.add(getDummyOrder());
-                customerRepository.save(c);
+                userRepository.save(c);
             }
 
         };
@@ -66,7 +66,7 @@ public class Application {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/customer")
+                registry.addMapping("/user")
                         .allowedOrigins("http://localhost:3000")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
                         .allowedHeaders("*")
@@ -75,8 +75,8 @@ public class Application {
         };
     }
 
-    private Customer getDummyCustomer(int i) {
-        Customer c1 = new Customer();
+    private User getDummyCustomer(int i) {
+        User c1 = new User();
         String[] array = {"ali", "veli", "ahmet", "ayşe", "nefise", "murat", "semih", "sezin", "selma", "nadide", "yasemin", "haluk", "duru"};
         Random ran = new Random();
         c1.setBirth(new Date());
@@ -90,8 +90,8 @@ public class Application {
         return c1;
     }
 
-    public CustomerOrder getDummyOrder() {
-        CustomerOrder co = new CustomerOrder();
+    public UserOrder getDummyOrder() {
+        UserOrder co = new UserOrder();
         co.setOrderAmount(new Random().nextDouble());
         co.setOrderDate(new Date());
         co.setProduct(getProductAsFon());

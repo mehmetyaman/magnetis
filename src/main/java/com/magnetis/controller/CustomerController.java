@@ -8,9 +8,14 @@ import com.magnetis.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 @RestController
+@CrossOrigin
 public class CustomerController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
@@ -29,6 +34,21 @@ public class CustomerController {
         Customer c = customerService.getCustomerByEmailAndPassword(email, pass);
         if (c != null) return c;
         LOGGER.error("can not find any user with params:" + email + " and :" + pass);
+        throw new UserNotFoundException(ExceptionStatics.CAN_NOT_FIND_USER);
+    }
+
+    @RequestMapping(value = "/customer/search", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<Customer> searchCustomer(@RequestParam("searchText") String searchText, HttpServletResponse response) {
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+
+        List<Customer> customers = customerService.searchCustomer(searchText);
+        if (!CollectionUtils.isEmpty(customers)) return customers;
+        LOGGER.error("can not find any user with params:" + searchText);
         throw new UserNotFoundException(ExceptionStatics.CAN_NOT_FIND_USER);
     }
 
@@ -63,4 +83,5 @@ public class CustomerController {
     public void delete(@PathVariable(value = "id") long id) {
         customerService.delete(id);
     }
+
 }

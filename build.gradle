@@ -50,11 +50,15 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jetty")
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile group: 'com.google.zxing', name: 'javase', version: '3.3.1'
+
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.5-beta6'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
     compile 'mysql:mysql-connector-java'
 
 
+
     compileOnly 'org.projectlombok:lombok:1.16.18'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.9.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

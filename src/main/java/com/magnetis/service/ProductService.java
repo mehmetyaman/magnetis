@@ -6,6 +6,8 @@ import com.magnetis.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("productService")
 public class ProductService {
     @Autowired
@@ -29,5 +31,13 @@ public class ProductService {
 
     public void delete(Long id) {
         repository.delete(id);
+    }
+
+    public List<Product> search(String searchText) {
+        List<Product> products = repository.findByNameContains(searchText);
+        products.addAll(repository.findByShortDesc(searchText));
+        products.addAll(repository.findByShortDescContains(searchText));
+
+        return products;
     }
 }

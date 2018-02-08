@@ -28,6 +28,11 @@ public class UserController {
         return userService.findAll();
     }
 
+    @RequestMapping(value = "/user/memberedCompanies", method = RequestMethod.GET, produces = "application/json")
+    public Iterable<User> userCompanies() {
+        return userService.findAll();
+    }
+
     @RequestMapping(value = "/user/login", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public User getCustomer(@RequestParam("email") String email, @RequestParam("pass") String pass) {
@@ -75,7 +80,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
-    public User update(@RequestBody User user) {
+    public User update(@RequestBody User user, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         return userService.update(user);
     }
 

@@ -1,5 +1,10 @@
 package com.magnetis.controller;
 
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.DecodeHintType;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
 import com.magnetis.exception.InternalServerError;
 import com.magnetis.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +18,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
+import javax.imageio.ImageIO;
+import java.io.FileInputStream;
+import java.nio.charset.Charset;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -44,5 +52,6 @@ public class QrController {
     public void deleteAllCachedImages() {
         imageService.purgeCache();
     }
+
 
 }

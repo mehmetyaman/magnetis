@@ -2,15 +2,11 @@ package com.magnetis.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Objects;
 
-/**
- *
- */
 @Entity
 @Transactional
 public class Company {
@@ -18,41 +14,67 @@ public class Company {
     }
 
     @Id
+    @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
 
     @Column(unique = true)
     @Getter
     @Setter
     private String name;
 
-    @ManyToMany
     @Getter
     @Setter
-    private List<Category> categories;
 
-    @ManyToMany
+    private String city;
+
     @Getter
     @Setter
-    private List<Campaign> compaigns;
+    private String country;
+
+    @Getter
+    @Setter
+    private String postCode;
+
+    @Getter
+    @Setter
+    private String companyCode;
+
+    @Getter
+    @Setter
+    private String address;
+
+    @Getter
+    @Setter
+    private String phone1;
+
+    @Getter
+    @Setter
+    private String phone2;
+
+    @Getter
+    @Setter
+    @Range(min = 0, max = 100)
+    private int pointRatio;
+
+    @OneToOne
+    @Getter
+    @Setter
+    private User owner;
+
+    @Getter
+    @Setter
+    /**
+     * barber, coffee, grocery etc...
+     */
+    private String field;
+
 
     public Company(String name) {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Company company = (Company) o;
-        return Objects.equals(id, company.id) &&
-                Objects.equals(name, company.name) &&
-                Objects.equals(categories, company.categories) &&
-                Objects.equals(compaigns, company.compaigns);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, categories, compaigns);
-    }
 }

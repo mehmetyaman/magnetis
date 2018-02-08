@@ -10,14 +10,16 @@ import java.util.Objects;
 
 @Entity
 @Transactional
-public class UserOrder {
+public class UserOrder  {
 
     public UserOrder() {
     }
-
     @Id
+    @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @OneToOne
     @Getter
     @Setter
@@ -34,20 +36,4 @@ public class UserOrder {
     @Setter
     private User user;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserOrder that = (UserOrder) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(product, that.product) &&
-                Objects.equals(orderDate, that.orderDate) &&
-                Objects.equals(orderAmount, that.orderAmount) &&
-                Objects.equals(user, that.user);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, product, orderDate, orderAmount, user);
-    }
 }

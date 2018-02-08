@@ -2,6 +2,7 @@ package com.magnetis.controller;
 
 import com.magnetis.domain.Company;
 import com.magnetis.service.CompanyService;
+import com.magnetis.util.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,14 @@ public class CompanyController {
 
     @RequestMapping(value = "/company", method = RequestMethod.POST)
     public Company create(@RequestBody Company company) {
+        String companyCode = new RandomString().createCompanyCode();
+
+        if(companyService.findByCompanyCode(companyCode)==null){
+            company.setCompanyCode(companyCode);
+        } else {
+            company.setCompanyCode(new RandomString().createCompanyCode());
+        };
+
         return companyService.save(company);
     }
 

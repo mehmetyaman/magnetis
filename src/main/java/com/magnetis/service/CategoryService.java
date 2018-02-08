@@ -6,13 +6,15 @@ import com.magnetis.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("categoryService")
 public class CategoryService {
 
     @Autowired
     CategoryRepository repository;
 
-    public Category save(Category category){
+    public Category save(Category category) {
         return repository.save(category);
     }
 
@@ -30,5 +32,10 @@ public class CategoryService {
 
     public void delete(Long id) {
         repository.delete(id);
+    }
+
+    public List<Category> search(String searchText) {
+        List<Category> categories = repository.findByNameContains(searchText);
+        return categories;
     }
 }

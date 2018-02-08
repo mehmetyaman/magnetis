@@ -8,9 +8,8 @@ import javax.transaction.Transactional;
 
 @Entity
 @Transactional
-public class Category {
-
-    public Category() {
+public class Content {
+    public Content() {
     }
 
     @Id
@@ -19,6 +18,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
     @Getter
     @Setter
     @Column(unique = true)
@@ -26,5 +26,14 @@ public class Category {
     @Getter
     @Setter
     private Boolean visible;
+
+    @Getter
+    @Setter
+    private String initialContent;
+
+    @Getter
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private ContentType contentType;
 
 }

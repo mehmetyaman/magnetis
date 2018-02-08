@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface OrderRepository extends CrudRepository<UserOrder, Long> {
 
-    List<UserOrder> findByCustomer(User user);
+    List<UserOrder> findByUser(User user);
 }

@@ -8,4 +8,6 @@ import java.util.List;
 public interface CompanyRepository extends CrudRepository<Company, Long> {
 
     List<Company> findByName(String name);
+    List<Company> findByNameIsLike(String name);
+    List<Company> findByCompanyCode(String name);
 }

@@ -16,6 +16,24 @@ public class RandomString {
         return new String(buf);
     }
 
+    public String createCompanyCode() {
+        return generateRandomChars("0123456789", 8);
+    }
+
+    /**
+     * @param candidateChars the candidate chars
+     * @param length         the number of random chars to be generated
+     * @return
+     */
+    public String generateRandomChars(String candidateChars, int length) {
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            sb.append(candidateChars.charAt(random.nextInt(candidateChars.length())));
+        }
+        return sb.toString();
+    }
+
     public static final String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public static final String lower = upper.toLowerCase(Locale.ROOT);

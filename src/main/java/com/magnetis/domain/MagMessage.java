@@ -5,12 +5,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.util.Date;
 
 @Entity
 @Transactional
-public class Category {
-
-    public Category() {
+public class MagMessage {
+    public MagMessage() {
     }
 
     @Id
@@ -19,12 +19,23 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
     @Getter
     @Setter
-    @Column(unique = true)
-    private String name;
+    private Date messageDate;
+
     @Getter
     @Setter
-    private Boolean visible;
+    @OneToOne
+    private User from;
+
+    @Getter
+    @Setter
+    @OneToOne
+    private User to;
+
+    @Getter
+    @Setter
+    private String content;
 
 }

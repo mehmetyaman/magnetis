@@ -19,6 +19,10 @@ public class CompanyService {
         return repository.findAll();
     }
 
+    public Iterable<Company> findByCompanyCode(String companyCode) {
+        return repository.findByCompanyCode(companyCode);
+    }
+
     public Company getCompany(Long id) {
         return repository.findOne(id);
     }

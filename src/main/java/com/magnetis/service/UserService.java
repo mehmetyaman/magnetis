@@ -1,5 +1,6 @@
 package com.magnetis.service;
 
+import com.magnetis.domain.Company;
 import com.magnetis.domain.User;
 import com.magnetis.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("customerService")
+@Service("userService")
 public class UserService {
 
     @Autowired
@@ -27,10 +28,10 @@ public class UserService {
     }
 
     public  List<User> searchCustomer(String searchText) {
-        List<User> users = repository.findByEMailIsLike(searchText);
-        users.addAll(repository.findByFirstNameIsLike(searchText));
-        users.addAll(repository.findByLastNameIsLike(searchText));
-        users.addAll(repository.findByPhoneNumberIsLike(searchText));
+        List<User> users = repository.findByEMailContains(searchText);
+        users.addAll(repository.findByFirstNameContains(searchText));
+        users.addAll(repository.findByLastNameContains(searchText));
+        users.addAll(repository.findByPhoneNumberContains(searchText));
 
         return users;
     }
